@@ -1,6 +1,6 @@
 tasks:
   Run Python:
-    shell: python tasks.py
+    shell: python nytimes_scraping.py
 
 condaConfigFile: conda.yaml
 artifactsDir: output
