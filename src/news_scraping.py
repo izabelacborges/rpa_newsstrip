@@ -101,6 +101,13 @@ def save_image(locator):
     return browser_lib.capture_element_screenshot(img_locator, f"article-{locator+1}.png")
 
 
+def info_metrics(title, description, term):
+    count_query = u.get_query_count(title, description, term)
+    bool_contains_currency = u.contains_currency(title, description)
+    
+    return count_query, bool_contains_currency
+
+
 def extract_article_results(term):
     articles = []
 
@@ -115,12 +122,16 @@ def extract_article_results(term):
         
         img_filename = save_image(i)
         
+        count_query, bool_contains_currency = info_metrics(title, description, term)
+        
         articles.append(
             NewsArticle(
                 title=title,
                 date=date,
                 description=description,
-                imgage_file_path=img_filename
+                imgage_file_path=img_filename,
+                count_times_query_appears=count_query,
+                contains_currency=bool_contains_currency
             )
         )
 

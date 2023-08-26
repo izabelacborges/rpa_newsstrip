@@ -1,3 +1,5 @@
+import re
+
 from datetime import datetime as dt
 
 
@@ -23,3 +25,14 @@ def get_date_range(timespan):
 def get_number_from_sentence(sentence):
     numbers_list = re.findall(r'[\d]+[.,\d]+|[\d]*[.][\d]+|[\d]+', sentence)
     return [int(s.replace(',','')) for s in numbers_list]
+
+
+def get_query_count(title, description, term):
+    news_strip = '. '.join([title, description])
+    return news_strip.count(term)
+
+
+def contains_currency(title, description):
+    news_strip = '. '.join([title, description])
+    currencies = re.findall(r'((?:\$\d+[.,\d]+|\$\d*.\d+|\$\d+))|(\d+[.,\d]+  (USD|dol{2}ars)+|\d*.\d+ (USD|dol{2}ars)+|\d+ (USD|dol{2}ars)+)', news_strip)
+    return bool(currencies)
