@@ -1,3 +1,5 @@
+from utils import utils as u
+
 from RPA.Browser.Selenium import Selenium
 
 
@@ -27,6 +29,23 @@ def search_for(term):
     input_field = "name:query"
     browser_lib.input_text(input_field, term)
     browser_lib.press_keys(input_field, "ENTER")
+
+
+def filter_date_range(timespan):
+    start_date, end_date = u.get_date_range(timespan)
+
+    calendar_button = "data:testid:search-date-dropdown-a"
+    browser_lib.click_button(calendar_button)
+
+    choose_date_button = "xpath://button[@value='Specific Dates']"
+    browser_lib.click_button(choose_date_button)
+
+    start_date_input = "id:startDate"
+    browser_lib.input_text(start_date_input, start_date)
+    end_date_input = "id:endDate"
+    browser_lib.input_text(end_date_input, end_date)
+
+    browser_lib.click_button(calendar_button)
 
 
 def end_task():
