@@ -6,6 +6,7 @@ from utils import excel_utils as excel
 from utils import utils as u
 
 from RPA.Browser.Selenium import Selenium
+from selenium.common import exceptions as e
 
 
 browser_lib = Selenium()
@@ -64,7 +65,7 @@ def filter_categories(categories):
         try:
             section = f'xpath://input[contains(@value, "{i}")]'
             browser_lib.select_checkbox(section)
-        except Exception:
+        except e.NoSuchElementException:
             logging.exception(f'There is no {i} category for the searched term.')
     
     browser_lib.click_button(section_button)
@@ -77,7 +78,7 @@ def sort_results(sort_by="newest"):
 
 def show_all_articles():
     show_more_locator = "data:testid:search-show-more-button"
-    with contextlib.suppress(Exception):
+    with contextlib.suppress(e.StaleElementReferenceException):
         while browser_lib.is_element_visible(show_more_locator):
             browser_lib.click_button_when_visible(show_more_locator)
 
