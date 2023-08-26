@@ -18,5 +18,10 @@ def dismiss_cookies():
     browser_lib.click_button(cookies_button)
 
 
+def open_navigation_menu():
+    menu_button = "data:testid:nav-button"
+    browser_lib.click_button(menu_button)
+
+
 def end_task():
     browser_lib.close_all_browsers()
