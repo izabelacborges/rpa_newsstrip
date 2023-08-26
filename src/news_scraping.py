@@ -21,6 +21,7 @@ def open_the_website(url):
 
 def dismiss_terms():
     terms_button = "class:css-1fzhd9j"
+    browser_lib.wait_until_element_is_visible(terms_button)
     browser_lib.click_button(terms_button)
 
 
