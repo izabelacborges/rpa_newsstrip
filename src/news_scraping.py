@@ -2,6 +2,7 @@ import contextlib
 import logging
 
 from src.news_article import NewsArticle
+from utils import excel_utils as excel
 from utils import utils as u
 
 from RPA.Browser.Selenium import Selenium
@@ -136,6 +137,12 @@ def extract_article_results(term):
         )
 
     return articles
+
+
+def save_results_in_excel(articles, filename="articles.xlsx"):
+    excel.setup_file(filename)
+    excel.save_results(articles, filename)
+    excel.teardown()
 
 
 def end_task():

@@ -13,6 +13,7 @@ def main():
         ns.filter_categories(["Arts", "The Learning Network", "World"])
         ns.sort_results()
         article_results = ns.extract_article_results(QUERY)
+        ns.save_results_in_excel(article_results)
     finally:
         ns.end_task()
 
