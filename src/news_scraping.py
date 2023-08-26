@@ -10,6 +10,10 @@ from RPA.Browser.Selenium import Selenium
 browser_lib = Selenium()
 
 
+def set_directories():
+    browser_lib.set_screenshot_directory("article-images")
+    
+    
 def open_the_website(url):
     browser_lib.open_available_browser(url)
 
@@ -91,6 +95,12 @@ def extract_text_info(locator):
     return date, title, description
 
 
+def save_image(locator):
+    img_locator = f"xpath://li[@data-testid = 'search-bodega-result'][{locator+1}]/div/div/figure/div/img"
+    
+    return browser_lib.capture_element_screenshot(img_locator, f"article-{locator+1}.png")
+
+
 def extract_article_results(term):
     articles = []
 
@@ -103,11 +113,14 @@ def extract_article_results(term):
     for i in range(amount):
         date, title, description = extract_text_info(i)
         
+        img_filename = save_image(i)
+        
         articles.append(
             NewsArticle(
                 title=title,
                 date=date,
-                description=description
+                description=description,
+                imgage_file_path=img_filename
             )
         )
 

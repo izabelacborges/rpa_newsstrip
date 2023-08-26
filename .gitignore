@@ -157,6 +157,10 @@ cython_debug/
 # MacOS stuff
 *.DS_Store
 
+# Project stuff
+*.xlsx
+*.png
+
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
