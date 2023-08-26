@@ -1,3 +1,4 @@
+import logging
 from utils import utils as u
 
 from RPA.Browser.Selenium import Selenium
@@ -46,6 +47,20 @@ def filter_date_range(timespan):
     browser_lib.input_text(end_date_input, end_date)
 
     browser_lib.click_button(calendar_button)
+
+
+def filter_categories(categories):
+    section_button = "data:testid:search-multiselect-button"
+    browser_lib.click_button(section_button)
+
+    for i in categories:
+        try:
+            section = f'xpath://input[contains(@value, "{i}")]'
+            browser_lib.select_checkbox(section)
+        except Exception:
+            logging.exception(f'There is no {i} category for the searched term.')
+    
+    browser_lib.click_button(section_button)
 
 
 def end_task():
