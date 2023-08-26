@@ -63,5 +63,10 @@ def filter_categories(categories):
     browser_lib.click_button(section_button)
 
 
+def sort_results(sort_by="newest"):
+    sortby_button = "data:testid:SearchForm-sortBy"
+    browser_lib.select_from_list_by_value(sortby_button, sort_by)
+
+
 def end_task():
     browser_lib.close_all_browsers()
