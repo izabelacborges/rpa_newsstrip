@@ -14,7 +14,7 @@ browser_lib = Selenium()
 
 
 def set_directories():
-    browser_lib.set_screenshot_directory(os.path.join(os.getcwd(), "output", "article-images"))
+    browser_lib.set_screenshot_directory(os.path.join(os.getcwd(), "output"))
     
     
 def open_the_website(url):
@@ -101,7 +101,7 @@ def extract_text_info(locator):
 def save_image(locator):
     img_locator = f"xpath://li[@data-testid = 'search-bodega-result'][{locator+1}]/div/div/figure/div/img"
     
-    return browser_lib.capture_element_screenshot(img_locator, f"article-{locator+1}.png")
+    return browser_lib.capture_element_screenshot(img_locator, f"article-image-{locator+1}.png")
 
 
 def info_metrics(title, description, term):
