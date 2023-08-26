@@ -1,4 +1,6 @@
+import contextlib
 import logging
+
 from utils import utils as u
 
 from RPA.Browser.Selenium import Selenium
@@ -68,10 +70,19 @@ def sort_results(sort_by="newest"):
     browser_lib.select_from_list_by_value(sortby_button, sort_by)
 
 
+def show_all_articles():
+    show_more_locator = "data:testid:search-show-more-button"
+    with contextlib.suppress(Exception):
+        while browser_lib.is_element_visible(show_more_locator):
+            browser_lib.click_button_when_visible(show_more_locator)
+
+
 def extract_article_results(term):
     results_header = "data:testid:SearchForm-status"
     results_returned = browser_lib.get_text(results_header).split("\n")[0]
     amount = u.get_number_from_sentence(results_returned)[0]
+
+    show_all_articles()
 
 
 def end_task():
