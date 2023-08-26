@@ -80,6 +80,7 @@ def show_all_articles():
     show_more_locator = "data:testid:search-show-more-button"
     with contextlib.suppress(e.StaleElementReferenceException):
         while browser_lib.is_element_visible(show_more_locator):
+            browser_lib.set_focus_to_element(show_more_locator)
             browser_lib.click_button_when_visible(show_more_locator)
 
 
