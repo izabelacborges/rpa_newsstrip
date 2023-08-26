@@ -8,7 +8,7 @@ def main(URL, QUERY, TIMESPAN, CATEGORIES):
         ns.set_directories()
         ns.open_the_website(URL)
         ns.dismiss_terms()
-        ns.open_navigation_menu()
+        ns.dismiss_cookies()
         ns.search_for(QUERY)
         ns.filter_date_range(TIMESPAN)
         ns.filter_categories(CATEGORIES)

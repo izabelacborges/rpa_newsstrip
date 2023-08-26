@@ -27,7 +27,7 @@ def dismiss_terms():
 
 def dismiss_cookies():
     cookies_button = "data:testid:GDPR-reject"
-    browser_lib.click_button(cookies_button)
+    browser_lib.click_button_when_visible(cookies_button)
 
 
 def open_navigation_menu():
