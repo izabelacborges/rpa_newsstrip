@@ -115,7 +115,7 @@ def extract_article_results(term):
 
     results_header = "data:testid:SearchForm-status"
     results_returned = browser_lib.get_text(results_header).split("\n")[0]
-    logging.debug(f"Here's the results returned (it should be a list): {results_returned}")
+    logging.info(f"Here's the results returned (it should be a list): {results_returned}")
     amount = u.get_number_from_sentence(results_returned)[0]
 
     show_all_articles()
