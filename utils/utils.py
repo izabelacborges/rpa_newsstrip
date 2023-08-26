@@ -18,3 +18,8 @@ def get_date_range(timespan):
     start_date = then.strftime("%m/%d/%Y")
 
     return start_date, end_date
+
+
+def get_number_from_sentence(sentence):
+    numbers_list = re.findall(r'[\d]+[.,\d]+|[\d]*[.][\d]+|[\d]+', sentence)
+    return [int(s.replace(',','')) for s in numbers_list]

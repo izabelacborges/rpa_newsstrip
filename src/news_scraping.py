@@ -68,5 +68,11 @@ def sort_results(sort_by="newest"):
     browser_lib.select_from_list_by_value(sortby_button, sort_by)
 
 
+def extract_article_results(term):
+    results_header = "data:testid:SearchForm-status"
+    results_returned = browser_lib.get_text(results_header).split("\n")[0]
+    amount = u.get_number_from_sentence(results_returned)[0]
+
+
 def end_task():
     browser_lib.close_all_browsers()
