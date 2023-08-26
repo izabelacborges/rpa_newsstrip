@@ -16,7 +16,7 @@ def set_directories():
     
     
 def open_the_website(url):
-    browser_lib.open_available_browser(url)
+    browser_lib.open_available_browser(url, maximized=True)
 
 
 def dismiss_terms():
