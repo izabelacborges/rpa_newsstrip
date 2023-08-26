@@ -115,7 +115,6 @@ def extract_article_results(term):
 
     results_header = "data:testid:search-status-screenreader"
     results_returned = browser_lib.get_text(results_header)
-    logging.error(f"Here's the results returned (it should be a list): {results_returned}")
     amount = u.get_number_from_sentence(results_returned)[-1]
 
     show_all_articles()
