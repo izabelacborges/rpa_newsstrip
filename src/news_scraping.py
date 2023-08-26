@@ -13,5 +13,10 @@ def dismiss_terms():
     browser_lib.click_button(terms_button)
 
 
+def dismiss_cookies():
+    cookies_button = "data:testid:GDPR-reject"
+    browser_lib.click_button(cookies_button)
+
+
 def end_task():
     browser_lib.close_all_browsers()
