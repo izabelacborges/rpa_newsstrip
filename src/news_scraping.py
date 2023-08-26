@@ -1,5 +1,6 @@
 import contextlib
 import logging
+import os
 
 from src.news_article import NewsArticle
 from utils import excel_utils as excel
@@ -13,7 +14,7 @@ browser_lib = Selenium()
 
 
 def set_directories():
-    browser_lib.set_screenshot_directory("article-images")
+    browser_lib.set_screenshot_directory(os.path.join(os.getcwd(), "output", "article-images"))
     
     
 def open_the_website(url):
@@ -141,6 +142,8 @@ def extract_article_results(term):
 
 
 def save_results_in_excel(articles, filename="articles.xlsx"):
+    filename = os.path.join(os.getcwd(), "output", filename)
+
     excel.setup_file(filename)
     excel.save_results(articles, filename)
     excel.teardown()
