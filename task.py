@@ -2,15 +2,17 @@ from src import news_scraping as ns
 
 # Define a main() function that calls the other functions in order:
 def main():
+    QUERY = "ChatGPT"
     try:
         ns.set_directories()
         ns.open_the_website("https://nytimes.com")
         ns.dismiss_terms()
         ns.open_navigation_menu()
-        ns.search_for("ChatGPT")
+        ns.search_for(QUERY)
         ns.filter_date_range(1)
         ns.filter_categories(["Arts", "The Learning Network", "World"])
         ns.sort_results()
+        article_results = ns.extract_article_results(QUERY)
     finally:
         ns.end_task()
 

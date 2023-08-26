@@ -1,6 +1,7 @@
 import contextlib
 import logging
 
+from src.news_article import NewsArticle
 from utils import utils as u
 
 from RPA.Browser.Selenium import Selenium
@@ -77,12 +78,40 @@ def show_all_articles():
             browser_lib.click_button_when_visible(show_more_locator)
 
 
+def extract_text_info(locator):
+    date_locator = f"xpath://li[@data-testid = 'search-bodega-result'][{locator+1}]/div/span"
+    date = browser_lib.get_text(date_locator)
+    
+    title_locator = f"xpath://li[@data-testid = 'search-bodega-result'][{locator+1}]/div/div/div/a/h4"
+    title = browser_lib.get_text(title_locator)
+    
+    desc_locator = f"xpath://li[@data-testid = 'search-bodega-result'][{locator+1}]/div/div/div/a/p"
+    description = browser_lib.get_text(desc_locator)
+
+    return date, title, description
+
+
 def extract_article_results(term):
+    articles = []
+
     results_header = "data:testid:SearchForm-status"
     results_returned = browser_lib.get_text(results_header).split("\n")[0]
     amount = u.get_number_from_sentence(results_returned)[0]
 
     show_all_articles()
+
+    for i in range(amount):
+        date, title, description = extract_text_info(i)
+        
+        articles.append(
+            NewsArticle(
+                title=title,
+                date=date,
+                description=description
+            )
+        )
+
+    return articles
 
 
 def end_task():
