@@ -30,12 +30,10 @@ def dismiss_cookies():
     browser_lib.click_button_when_visible(cookies_button)
 
 
-def open_navigation_menu():
-    menu_button = "data:testid:nav-button"
-    browser_lib.click_button(menu_button)
-
-
 def search_for(term):
+    search_button = "data:testid:search-button"
+    browser_lib.click_button(search_button)
+
     input_field = "name:query"
     browser_lib.input_text(input_field, term)
     browser_lib.press_keys(input_field, "ENTER")
