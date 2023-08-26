@@ -23,5 +23,11 @@ def open_navigation_menu():
     browser_lib.click_button(menu_button)
 
 
+def search_for(term):
+    input_field = "name:query"
+    browser_lib.input_text(input_field, term)
+    browser_lib.press_keys(input_field, "ENTER")
+
+
 def end_task():
     browser_lib.close_all_browsers()
